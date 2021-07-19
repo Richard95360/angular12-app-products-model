@@ -23,22 +23,6 @@
       "quantity": 200,
       "selected": false,
       "available": true
-    },
-    {
-      "name": "phone",
-      "price": "10",
-      "quantity": "2",
-      "selected": true,
-      "available": true,
-      "id": 5
-    },
-    {
-      "id": 6,
-      "name": "IphoneX",
-      "price": "111",
-      "quantity": "20",
-      "selected": true,
-      "available": true
     }
   ]
 }
