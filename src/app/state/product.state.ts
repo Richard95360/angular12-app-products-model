@@ -7,6 +7,8 @@ export enum ProductActionsTypes {
    SELECT_PRODUCT="[Product]  Select product",
    EDIT_PRODUCT="[Product]  Edit product",
    DELETE_PRODUCT="[Product]  Delete product",
+   PRODUCT_ADDED="[Product]  Added product",
+   PRODUCT_UPDATED="[Product]  Update product",
 }
 
 export enum DataStateEnum {

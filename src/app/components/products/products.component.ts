@@ -3,9 +3,9 @@ import { ProductsService } from '../../services/product.service';
 import { Product } from '../../model/product.model';
 import { Observable, of } from 'rxjs';
 import { catchError, map, startWith } from 'rxjs/operators';
-import { AppDataState, DataStateEnum} from '../../state/product.state';
-import { ProductActionsTypes, ActionEvent } from '../../state/product.state';
+import { AppDataState, DataStateEnum,ProductActionsTypes, ActionEvent } from '../../state/product.state';
 import { Router } from '@angular/router';
+import { EventDriverService } from '../../services/event.driver.service';
 
 @Component({
   selector: 'app-products',
@@ -18,9 +18,14 @@ export class ProductsComponent implements OnInit {
 
   readonly DataStateEnum=DataStateEnum;
 
-  constructor(private  productsService:ProductsService, private router:Router) { }
+  constructor(private  productsService:ProductsService, private router:Router,
+   private eventDriverService:EventDriverService) { }
 
   ngOnInit(): void {
+    this.eventDriverService.sourceEventSubjectObservable.subscribe((actionEvent:ActionEvent) =>{
+    this.onActionEvent(actionEvent);
+
+    });
   }
 
   onGetAllProducts() {
@@ -105,7 +110,6 @@ onEdit(p:Product){
 }
 
 onActionEvent($event:ActionEvent){
-
   switch ($event.type) {
     case ProductActionsTypes.GET_ALL_PRODUCTS: this.onGetAllProducts();break;
     case ProductActionsTypes.GET_SELECTED_PRODUCTS: this.onGetSelectedProducts();break;
@@ -118,6 +122,7 @@ onActionEvent($event:ActionEvent){
 
 
   }
+
 }
 
 
